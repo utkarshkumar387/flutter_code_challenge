@@ -3,8 +3,6 @@
 ## Objective
 Create a Flutter app that displays a list of doctors, fetched from a mock API, with a detail screen for each doctor.
 
----
-
 ## Requirements
 
 ### 1. Mock API Call
@@ -39,8 +37,6 @@ Create a Flutter app that displays a list of doctors, fetched from a mock API, w
 ### 7. Bonus (Optional)
 - Implement extra features like filtering or sorting.
 - Add unit tests for the doctor model.
-
----
 
 ## Challenge Guidelines
 - **Fork the Repository**: Fork the repository on GitHub.
