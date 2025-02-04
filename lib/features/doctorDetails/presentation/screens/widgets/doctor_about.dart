@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DoctorAbout extends StatelessWidget {
   final String about;
 
-  const DoctorAbout({Key? key, required this.about}) : super(key: key);
+  const DoctorAbout({super.key, required this.about});
 
   @override
   Widget build(BuildContext context) {

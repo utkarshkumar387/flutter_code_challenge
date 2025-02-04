@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DoctorEducation extends StatelessWidget {
   final String education;
 
-  const DoctorEducation({Key? key, required this.education}) : super(key: key);
+  const DoctorEducation({super.key, required this.education});
 
   @override
   Widget build(BuildContext context) {

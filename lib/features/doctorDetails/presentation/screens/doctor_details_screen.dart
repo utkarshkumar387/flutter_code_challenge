@@ -17,10 +17,10 @@ class DoctorDetailsScreen extends ConsumerStatefulWidget {
   const DoctorDetailsScreen({super.key, required this.doctorId});
 
   @override
-  _DoctorDetailsScreenState createState() => _DoctorDetailsScreenState();
+  DoctorDetailsScreenState createState() => DoctorDetailsScreenState();
 }
 
-class _DoctorDetailsScreenState extends ConsumerState<DoctorDetailsScreen> {
+class DoctorDetailsScreenState extends ConsumerState<DoctorDetailsScreen> {
   @override
   void initState() {
     super.initState();

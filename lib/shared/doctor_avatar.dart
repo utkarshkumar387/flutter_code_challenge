@@ -1,5 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:cached_network_image/cached_network_image.dart';
 
 class DoctorAvatar extends StatelessWidget {
   final String avatarUrl;
@@ -16,7 +17,19 @@ class DoctorAvatar extends StatelessWidget {
     return Center(
       child: CircleAvatar(
         radius: size,
-        backgroundImage: CachedNetworkImageProvider(avatarUrl),
+        child: kIsWeb
+            ? Image.network(
+                avatarUrl,
+                errorBuilder: (context, error, stackTrace) {
+                  return Icon(Icons.person, size: size);
+                },
+              )
+            : CachedNetworkImage(
+                imageUrl: avatarUrl,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Icon(Icons.person, size: size),
+                errorWidget: (context, url, error) => Icon(Icons.person, size: size),
+              ),
       ),
     );
   }
