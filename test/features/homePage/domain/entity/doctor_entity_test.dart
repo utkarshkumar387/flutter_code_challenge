@@ -1,4 +1,3 @@
-// filepath: /c:/Users/utkar/OneDrive/Desktop/Projects/skinder/flutter_code_challenge/test/features/homePage/domain/entity/doctor_entity_test.dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_code_challenge/features/homePage/domain/entity/doctor_entity.dart';
 
