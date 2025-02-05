@@ -7,13 +7,25 @@ class DoctorEducation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(Icons.school, color: Theme.of(context).colorScheme.primary),
-        const SizedBox(width: 8),
         Text(
-          education,
-          style: Theme.of(context).textTheme.bodyLarge,
+          'Education',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Icon(Icons.school, color: Theme.of(context).colorScheme.primary),
+            const SizedBox(width: 8),
+            Text(
+              education,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ],
         ),
       ],
     );
