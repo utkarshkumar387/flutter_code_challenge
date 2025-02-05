@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_code_challenge/features/homePage/presentation/screens/widgets/doctor_sorting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entity/doctor_entity.dart';
@@ -25,9 +26,9 @@ class _DoctorsPageState extends ConsumerState<HomePage> {
     });
   }
 
-  void _setSortOrder(SortOrder order) {
+  void _setSortOrder(SortOrder? order) {
     setState(() {
-      _sortOrder = order;
+      _sortOrder = order ?? SortOrder.none;
     });
   }
 
@@ -55,8 +56,7 @@ class _DoctorsPageState extends ConsumerState<HomePage> {
             case DoctorsStatus.loading:
               return const Center(child: CircularProgressIndicator());
             case DoctorsStatus.loaded:
-              List<DoctorEntity> sortedDoctors = doctorsState.doctors;
-
+              List<DoctorEntity> sortedDoctors = List.from(doctorsState.doctors);
               if (_sortOrder == SortOrder.ascending) {
                 sortedDoctors.sort((minExp, maxExp) =>
                     minExp.settings.yearsExperience.compareTo(maxExp.settings.yearsExperience));
@@ -102,33 +102,9 @@ class _DoctorsPageState extends ConsumerState<HomePage> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showMenu(
-            context: context,
-            position: const RelativeRect.fromLTRB(100, 600, 100, 100),
-            items: [
-              const PopupMenuItem(
-                value: SortOrder.ascending,
-                child: Text('Sort by Increasing Experience'),
-              ),
-              const PopupMenuItem(
-                value: SortOrder.descending,
-                child: Text('Sort by Decreasing Experience'),
-              ),
-              const PopupMenuItem(
-                value: SortOrder.none,
-                child: Text('Clear Sorting'),
-              ),
-            ],
-          ).then((value) {
-            if (value != null) {
-              _setSortOrder(value);
-            }
-          });
-        },
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        child: const Icon(Icons.sort, color: Colors.white),
+      floatingActionButton: DoctorSorting(
+        sortOrder: _sortOrder,
+        onSortOrderChanged: _setSortOrder,
       ),
     );
   }
