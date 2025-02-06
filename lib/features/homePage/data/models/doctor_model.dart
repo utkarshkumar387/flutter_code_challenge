@@ -1,20 +1,35 @@
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
-
 import '../../domain/entity/doctor_entity.dart';
+import 'doctor_settings_model.dart';
 
-class DoctorModel {
-  Future<List<DoctorEntity>> getDoctors() async {
-    try {
-      // Read the JSON file from assets
-      final String jsonString = await rootBundle.loadString('assets/data/all_doctors.json');
+class DoctorModel extends DoctorEntity {
+  const DoctorModel({
+    required super.id,
+    required super.firstName,
+    required super.lastName,
+    required super.consultationCount,
+    super.avatar,
+    required super.settings,
+  });
 
-      final Map<String, dynamic> jsonMap = json.decode(jsonString);
-      final List<dynamic> doctorsJson = jsonMap['data']['doctors'];
+  factory DoctorModel.fromJson(Map<String, dynamic> json) {
+    return DoctorModel(
+      id: json['id'],
+      firstName: json['first_name'] ?? "",
+      lastName: json['last_name'] ?? "",
+      avatar: json['avatar'] ?? "",
+      consultationCount: json['consultation_count'] ?? "",
+      settings: DoctorSettingsModel.fromJson(json['doctor_settings']),
+    );
+  }
 
-      return doctorsJson.map((doctorJson) => DoctorEntity.fromJson(doctorJson)).toList();
-    } catch (e) {
-      throw Exception('Error fetching doctors: $e');
-    }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'first_name': firstName,
+      'last_name': lastName,
+      'avatar': avatar,
+      'consultation_count': consultationCount,
+      'doctor_settings': settings.toJson(),
+    };
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_code_challenge/features/homePage/presentation/screens/widgets/doctor_sorting.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/models/doctor_model.dart';
 import '../../domain/entity/doctor_entity.dart';
 import '../provider/doctor_provider.dart';
 import 'widgets/doctor_list_tile.dart';
@@ -56,7 +57,7 @@ class _DoctorsPageState extends ConsumerState<HomePage> {
             case DoctorsStatus.loading:
               return const Center(child: CircularProgressIndicator());
             case DoctorsStatus.loaded:
-              List<DoctorEntity> sortedDoctors = List.from(doctorsState.doctors);
+              List<DoctorModel> sortedDoctors = List.from(doctorsState.doctors);
               if (_sortOrder == SortOrder.ascending) {
                 sortedDoctors.sort((minExp, maxExp) =>
                     minExp.settings.yearsExperience.compareTo(maxExp.settings.yearsExperience));

@@ -1,5 +1,5 @@
-import '../entity/doctor_entity.dart';
+import 'package:flutter_code_challenge/features/homePage/data/models/doctor_model.dart';
 
 abstract class DoctorRepository {
-  Future<List<DoctorEntity>> getDoctors();
+  Future<List<DoctorModel>> getDoctors();
 }

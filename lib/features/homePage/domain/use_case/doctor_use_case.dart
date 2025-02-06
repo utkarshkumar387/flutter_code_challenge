@@ -1,4 +1,4 @@
-import '../entity/doctor_entity.dart';
+import '../../data/models/doctor_model.dart';
 import '../repository/doctor_repository.dart';
 
 class GetDoctorsUseCase {
@@ -6,7 +6,7 @@ class GetDoctorsUseCase {
 
   GetDoctorsUseCase({required this.repository});
 
-  Future<List<DoctorEntity>> call() async {
+  Future<List<DoctorModel>> call() async {
     return await repository.getDoctors();
   }
 }

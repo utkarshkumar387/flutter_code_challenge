@@ -1,3 +1,4 @@
+import '../../../homePage/data/models/doctor_model.dart';
 import '../../../homePage/domain/entity/doctor_entity.dart';
 import '../repository/doctor_detail_repository.dart';
 
@@ -6,7 +7,7 @@ class DoctorDetailsUseCase {
 
   DoctorDetailsUseCase({required this.repository});
 
-  Future<DoctorEntity> call(int doctorId) async {
+  Future<DoctorModel> call(int doctorId) async {
     return await repository.getDoctorDetails(doctorId);
   }
 }

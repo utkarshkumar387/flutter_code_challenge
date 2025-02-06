@@ -2,14 +2,13 @@ import 'package:flutter_code_challenge/features/homePage/data/models/doctor_mode
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/repository/doctor_repository.dart';
-import '../../domain/entity/doctor_entity.dart';
 import '../../domain/use_case/doctor_use_case.dart';
 
 enum DoctorsStatus { initial, loading, loaded, error }
 
 class DoctorsState {
   final DoctorsStatus status;
-  final List<DoctorEntity> doctors;
+  final List<DoctorModel> doctors;
   final String? errorMessage;
 
   const DoctorsState({
@@ -22,7 +21,7 @@ class DoctorsState {
 
   factory DoctorsState.loading() => const DoctorsState(status: DoctorsStatus.loading);
 
-  factory DoctorsState.loaded(List<DoctorEntity> doctors) => DoctorsState(
+  factory DoctorsState.loaded(List<DoctorModel> doctors) => DoctorsState(
         status: DoctorsStatus.loaded,
         doctors: doctors,
       );
@@ -72,10 +71,10 @@ final getDoctorsUseCaseProvider = Provider((ref) {
 });
 
 final doctorRepositoryProvider = Provider((ref) {
-  final doctorsResponse = ref.read(doctorDataSourceProvider);
-  return DoctorRepositoryImpl(doctors: doctorsResponse);
+  // final doctorsResponse = ref.read(doctorDataSourceProvider);
+  return DoctorRepositoryImpl();
 });
 
-final doctorDataSourceProvider = Provider((ref) {
-  return DoctorModel();
-});
+// final doctorDataSourceProvider = Provider((ref) {
+//   return DoctorModel();
+// });

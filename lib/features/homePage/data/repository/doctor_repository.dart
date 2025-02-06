@@ -1,18 +1,23 @@
-import '../../domain/entity/doctor_entity.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 import '../../domain/repository/doctor_repository.dart';
 import '../models/doctor_model.dart';
 
 class DoctorRepositoryImpl implements DoctorRepository {
-  final DoctorModel doctors;
-
-  DoctorRepositoryImpl({required this.doctors});
+  DoctorRepositoryImpl();
 
   @override
-  Future<List<DoctorEntity>> getDoctors() async {
+  Future<List<DoctorModel>> getDoctors() async {
     try {
-      return await doctors.getDoctors();
+      // Read the JSON file from assets
+      final String jsonString = await rootBundle.loadString('assets/data/all_doctors.json');
+
+      final Map<String, dynamic> jsonMap = json.decode(jsonString);
+      final List<dynamic> doctorsJson = jsonMap['data']['doctors'];
+
+      return doctorsJson.map((doctorJson) => DoctorModel.fromJson(doctorJson)).toList();
     } catch (e) {
-      rethrow;
+      throw Exception('Error fetching doctors: $e');
     }
   }
 }

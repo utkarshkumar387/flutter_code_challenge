@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_code_challenge/features/homePage/domain/entity/doctor_entity.dart';
-import 'package:flutter_code_challenge/features/doctorDetails/data/models/doctor_detail_model.dart';
 
+import '../../../homePage/data/models/doctor_model.dart';
 import '../../data/repository/doctor_detail_repository.dart';
 import '../../domain/use_case/doctor_detail_use_case.dart';
 
@@ -10,7 +9,7 @@ enum DoctorDetailStatus { initial, loading, loaded, error }
 
 // State class
 class DoctorDetailState {
-  final DoctorEntity? doctor;
+  final DoctorModel? doctor;
   final bool isLoading;
   final String? error;
   final DoctorDetailStatus status;
@@ -23,7 +22,7 @@ class DoctorDetailState {
   factory DoctorDetailState.loading() =>
       DoctorDetailState(isLoading: true, status: DoctorDetailStatus.loading);
 
-  factory DoctorDetailState.loaded(DoctorEntity doctor) =>
+  factory DoctorDetailState.loaded(DoctorModel doctor) =>
       DoctorDetailState(doctor: doctor, status: DoctorDetailStatus.loaded);
 
   factory DoctorDetailState.error(String error) =>
@@ -60,8 +59,5 @@ final getDoctorDetailUseCaseProvider = Provider((ref) {
 });
 
 final doctorDetailRepositoryProvider = Provider((ref) {
-  final doctorsResponse = ref.read(doctorDetailDataProvider);
-  return DoctorDetailRepositoryImpl(doctorDetail: doctorsResponse);
+  return DoctorDetailRepositoryImpl();
 });
-
-final doctorDetailDataProvider = Provider((ref) => DoctorDetailModel());

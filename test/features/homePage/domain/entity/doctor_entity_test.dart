@@ -1,10 +1,11 @@
+import 'package:flutter_code_challenge/features/homePage/data/models/doctor_model.dart';
+import 'package:flutter_code_challenge/features/homePage/data/models/doctor_settings_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_code_challenge/features/homePage/domain/entity/doctor_entity.dart';
 
 void main() {
   group('DoctorSettings', () {
     test('should create a valid DoctorSettings instance', () {
-      const doctorSettings = DoctorSettings(
+      const doctorSettings = DoctorSettingsModel(
         id: 1,
         userId: 2,
         practice: 'Test Practice',
@@ -28,7 +29,7 @@ void main() {
     });
 
     test('should handle empty supportedLanguages and countries', () {
-      const doctorSettings = DoctorSettings(
+      const doctorSettings = DoctorSettingsModel(
         id: 1,
         userId: 2,
         practice: 'Test Practice',
@@ -57,7 +58,7 @@ void main() {
         'countries': ['USA', 'Canada'],
       };
 
-      final doctorSettings = DoctorSettings.fromJson(json);
+      final doctorSettings = DoctorSettingsModel.fromJson(json);
 
       expect(doctorSettings.id, 1);
       expect(doctorSettings.userId, 2);
@@ -71,7 +72,7 @@ void main() {
     });
 
     test('should convert to JSON', () {
-      const doctorSettings = DoctorSettings(
+      const doctorSettings = DoctorSettingsModel(
         id: 1,
         userId: 2,
         practice: 'Test Practice',
@@ -97,9 +98,9 @@ void main() {
     });
   });
 
-  group('DoctorEntity', () {
-    test('should create a valid DoctorEntity instance', () {
-      const doctorSettings = DoctorSettings(
+  group('DoctorModel', () {
+    test('should create a valid DoctorModel instance', () {
+      const doctorSettings = DoctorSettingsModel(
         id: 1,
         userId: 2,
         practice: 'Test Practice',
@@ -111,7 +112,7 @@ void main() {
         countries: ['USA', 'Canada'],
       );
 
-      const doctor = DoctorEntity(
+      const doctor = DoctorModel(
         id: 1,
         firstName: 'John',
         lastName: 'Doe',
@@ -129,7 +130,7 @@ void main() {
     });
 
     test('should handle null avatar', () {
-      const doctorSettings = DoctorSettings(
+      const doctorSettings = DoctorSettingsModel(
         id: 1,
         userId: 2,
         practice: 'Test Practice',
@@ -141,7 +142,7 @@ void main() {
         countries: ['USA', 'Canada'],
       );
 
-      const doctor = DoctorEntity(
+      const doctor = DoctorModel(
         id: 1,
         firstName: 'John',
         lastName: 'Doe',
@@ -173,7 +174,7 @@ void main() {
         },
       };
 
-      final doctor = DoctorEntity.fromJson(json);
+      final doctor = DoctorModel.fromJson(json);
 
       expect(doctor.id, 1);
       expect(doctor.firstName, 'John');
@@ -192,7 +193,7 @@ void main() {
     });
 
     test('should convert to JSON', () {
-      const doctorSettings = DoctorSettings(
+      const doctorSettings = DoctorSettingsModel(
         id: 1,
         userId: 2,
         practice: 'Test Practice',
@@ -204,7 +205,7 @@ void main() {
         countries: ['USA', 'Canada'],
       );
 
-      const doctor = DoctorEntity(
+      const doctor = DoctorModel(
         id: 1,
         firstName: 'John',
         lastName: 'Doe',
